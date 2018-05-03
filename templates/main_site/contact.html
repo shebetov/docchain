@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div id="colorlib-contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 animate-box">
+                        <h3>Contact Information</h3>
+                        <div class="row contact-info-wrap">
+                            <div class="col-md-3">
+                                <p><span><i class="icon-location"></i></span>просп. Победителей 93<br>г. Минск, Беларусь</p>
+                            </div>
+                            <div class="col-md-3">
+                                <p>
+                                    <span><i class="icon-phone"></i></span> <a href="tel://80173696459">8 (017) 369-64-59</a><br>
+                                    <span><i class="icon-phone"></i></span> <a href="tel://80173696916">8 (017) 369-69-16</a>
+                                </p>
+                            </div>
+                            <div class="col-md-3">
+                                <p><span><i class="icon-mail"></i></span> <a href="mailto:info@yoursite.com">medic4@tut.by</a></p>
+                            </div>
+                            <div class="col-md-3">
+                                <p><span><i class="icon-globe-outline"></i></span> <a href="http://www.4gp.by/">www.4gp.by</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10 col-md-offset-1 animate-box">
+                        <h3>Связаться с нами</h3>
+                        <form action="#">
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <label for="fname">Имя</label>
+                                    <input type="text" id="fname" class="form-control mb" placeholder="Ваше имя">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lname">Фамилия</label>
+                                    <input type="text" id="lname" class="form-control" placeholder="Ваша фамилия">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="email">Email</label>
+                                    <input type="text" id="email" class="form-control" placeholder="Ваш email адрес">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="subject">Тема</label>
+                                    <input type="text" id="subject" class="form-control" placeholder="Тема сообщения">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label for="message">Сообщение</label>
+                                    <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Ваши пожелания, проблемы или вопросы"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <input type="submit" value="Отправить" class="btn btn-primary">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="map" class="colorlib-map"></div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
+        <script src="{% static 'js/google_map.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section>
+    <div class="register-wrap animate-box">
+        <form id="registration-form">
+            <div class="registration-form__wrap">
+                <fieldset id="registration-inputs">
+                    <h1>Регистрация</h1>
+                    <input id="name" type="text" placeholder="Имя" autofocus required>
+                    <input id="password" type="password" placeholder="Пароль" required>
+                    <input id="repeat-password" type="password" placeholder="Повторить пароль" required>
+                    <input id="mail" type="text" placeholder="Email" required>
+                    <input id="phone" type="text" placeholder="Телефон (не обязательно)">
+                </fieldset>
+            </div>
+            <div class="registration-actions__wrap">
+                <fieldset id="registration-actions">
+                    <input type="submit" id="register" value="Зарегистрироваться">
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

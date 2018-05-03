@@ -1,0 +1,406 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<aside id="colorlib-hero">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li style="background-image: url('{% static 'images/slide_1.jpg' %}');">
+                        <div class="overlay"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2 col-md-pull-2 slider-text">
+                                    <div class="slider-text-inner">
+                                        <h1>Лабораторная экспресс-диагностика</h1>
+                                        <h2>Анализ мочи, гемостазиология, гемоцитология, килническая биохимия, цитохимия.</h2>
+                                        <p><a class="btn btn-primary btn-lg" href="appointment.html">Записаться на прием</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="background-image: url('{% static 'images/slide_2.jpg' %}');">
+                        <div class="overlay"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2 col-md-pull-2 slider-text">
+                                    <div class="slider-text-inner">
+                                        <h1>Консультации врачей-специалистов</h1>
+                                        <h2>Терапевт, хирург, гинеколог, врач-специалист.</h2>
+                                        <p><a class="btn btn-primary btn-lg" href="appointment.html">Записаться на прием</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="background-image: url('{% static 'images/slide_3.jpg' %}');">
+                        <div class="overlay"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2 col-md-pull-2 slider-text">
+                                    <div class="slider-text-inner">
+                                        <h1>Ультразвуковая диагностика</h1>
+                                        <h2>Органов брюшной полости, органов малого таза, молочных желез, почек, мочевого пузыря и др.</h2>
+                                        <p><a class="btn btn-primary btn-lg btn-learn" href="appointment.html">Записаться на прием</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="background-image: url('{% static 'images/slide_4.jpg' %}');">
+                        <div class="overlay"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2 col-md-pull-2 slider-text">
+                                    <div class="slider-text-inner">
+                                        <h1>Реабилитация</h1>
+                                        <h2>Восстановление после болезней, травм и операций</h2>
+                                        <p><a class="btn btn-primary btn-lg btn-learn" href="appointment.html">Записаться на прием</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="background-image: url('{% static 'images/slide_5.jpg' %}');">
+                        <div class="overlay"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2 col-md-pull-2 slider-text">
+                                    <div class="slider-text-inner">
+                                        <h1>Стоматология</h1>
+                                        <h2>Осмотр, зуболечение, профилактика, пломбирование и др.</h2>
+                                        <p><a class="btn btn-primary btn-lg btn-learn" href="appointment.html">Записаться на прием</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="background-image: url('{% static 'images/slide_6.jpg' %}');">
+                        <div class="overlay"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2 col-md-pull-2 slider-text">
+                                    <div class="slider-text-inner">
+                                        <h1>Гинекология</h1>
+                                        <h2>Консультация, постановка ВМС, кольпоскопия и др.</h2>
+                                        <p><a class="btn btn-primary btn-lg btn-learn" href="appointment.html">Записаться на прием</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="background-image: url('{% static 'images/slide_7.jpg' %}');">
+                        <div class="overlay"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2 col-md-pull-2 slider-text">
+                                    <div class="slider-text-inner">
+                                        <h1>Вакцинация</h1>
+                                        <h2>гепатит A, B, коклюш, дифтерия, столбняк, корь и др.</h2>
+                                        <p><a class="btn btn-primary btn-lg btn-learn" href="appointment.html">Записаться на прием</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <div id="colorlib-intro">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="intro animate-box">
+                            <div class="intro-grid color-1">
+                                <span class="icon"><i class="flaticon-hospital"></i></span>
+                                <h3>Консультации Специалистов</h3>
+                                <p>Наши специалисты проконсультируют вас по любому вопросу и подскажут, как вылечить любой недуг</p>
+                            </div>
+                            <div class="intro-grid color-2">
+                                <span class="icon"><i class="flaticon-healthy-1"></i></span>
+                                <h3>Квалифицированные Доктора</h3>
+                                <p>В нашей поликлинике вы получите квалифицированное лечение в максимально быстрый срок.</p>
+                            </div>
+                            <div class="intro-grid color-2">
+                                <span class="icon"><i class="flaticon-sign"></i></span>
+                                <h3>Центр Реабилитации</h3>
+                                <p>Массаж, лечебная терапия, физиотерапия и бассейн - все что нужно для восстановления организма.</p>
+                            </div>
+                            <div class="intro-grid color-3">
+                                <span class="icon"><i class="flaticon-ambulance"></i></span>
+                                <h3>Скорая Помощь</h3>
+                                <p>Вызов бригад скорой медицинской помощи осуществляется по телефону «103»</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="colorlib-about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive about-img" src="{% static 'images/about.jpg' %}" alt="">
+                    </div>
+                    <div class="col-md-7 col-md-push-1">
+                        <h2>О поликлинике</h2>
+                        <p>
+                            4-я городская поликлиника является многопрофильным лечебно-профилактическим учреждением по оказанию медицинской помощи детскому и взрослому населению.
+                        </p>
+                        <div class="fancy-collapse-panel">
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Почему выбирать нас?
+                                 </a>
+                             </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p>Наша поликлиника оказывает все виды услуг населению, имеется как детское, так и взрослое отделения. Работают специалисты высшей категории.</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p>За нас говорят отзывы, оставленные нашим специалистам.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                        <h4 class="panel-title">
+                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Что мы делаем?
+                                 </a>
+                             </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                        <div class="panel-body">
+                                            <p>В нашей поликлинике вы можете получить такие <strong>услуги</strong>, как:</p>
+                                            <ul>
+                                                <li>Лабораторная диагностика</li>
+                                                <li>Консультации врачей-специалистов</li>
+                                                <li>Ультразвуковая диагностика</li>
+                                                <li>Реабилитация</li>
+                                                <li>Стоматология</li>
+                                                <li>Гинекология</li>
+                                                <li>Вакцинация</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingThree">
+                                        <h4 class="panel-title">
+                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Дополнительные услуги
+                                 </a>
+                             </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                        <div class="panel-body">
+                                            <p>Среди дополнительных <strong>услуг</strong> есть:</p>
+                                            <ul>
+                                                <li>Единые дни здоровья</li>
+                                                <li>Школы здоровья</li>
+                                                <li>Центр дружественный подросткам «Синяя птица»</li>
+                                                <li>Психологическая помощь</li>
+                                                <li>и другие...</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="colorlib-appointment">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <h2 class="line-block">Ждем вас в нашей поликлинике</h2>
+                        <p class="line-block"><a href="#" class="btn btn-primary btn-outline btn-cta">Записаться на прием<i class="icon-calendar3"></i></a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="colorlib-doctor">
+            <div class="container">
+                <div class="row animate-box">
+                    <div class="col-md-6 col-md-offset-3 text-center colorlib-heading">
+                        <h2>Наша доска почета</h2>
+                        <p>Специалисты нашей поликлиники, получившие самую высокую оценку по вашему мнению</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12 animate-box text-center">
+                        <div class="doctor">
+                            <div class="staff-img" style="background-image: url('{% static 'images/staff-4.jpg' %}');"></div>
+                            <div class="desc">
+                                <h3><a href="#">Dr. Beatrice Prior</a></h3>
+                                <span>Dental Hygienist</span>
+                                <ul class="colorlib-social">
+                                    <li><a href="#"><i class="icon-facebook2"></i></a></li>
+                                    <li><a href="#"><i class="icon-twitter2"></i></a></li>
+                                    <li><a href="#"><i class="icon-linkedin2"></i></a></li>
+                                    <li><a href="#"><i class="icon-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 animate-box text-center">
+                        <div class="doctor">
+                            <div class="staff-img" style="background-image: url('{% static 'images/staff-2.jpg' %}');"></div>
+                            <div class="desc">
+                                <h3><a href="#">Dr. Edward Dughlas</a></h3>
+                                <span>Orthopedic Surgeon</span>
+                                <ul class="colorlib-social">
+                                    <li><a href="#"><i class="icon-facebook2"></i></a></li>
+                                    <li><a href="#"><i class="icon-twitter2"></i></a></li>
+                                    <li><a href="#"><i class="icon-linkedin2"></i></a></li>
+                                    <li><a href="#"><i class="icon-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 animate-box text-center">
+                        <div class="doctor">
+                            <div class="staff-img" style="background-image: url('{% static 'images/staff-3.jpg' %}');"></div>
+                            <div class="desc">
+                                <h3><a href="#">Dr. Peter Parker</a></h3>
+                                <span>Health Care</span>
+                                <ul class="colorlib-social">
+                                    <li><a href="#"><i class="icon-facebook2"></i></a></li>
+                                    <li><a href="#"><i class="icon-twitter2"></i></a></li>
+                                    <li><a href="#"><i class="icon-linkedin2"></i></a></li>
+                                    <li><a href="#"><i class="icon-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 animate-box text-center">
+                        <div class="doctor">
+                            <div class="staff-img" style="background-image: url('{% static 'images/staff-1.jpg' %}');"></div>
+                            <div class="desc">
+                                <h3><a href="#">Dr. Liza Thomas</a></h3>
+                                <span>Patient Services Manager</span>
+                                <ul class="colorlib-social">
+                                    <li><a href="#"><i class="icon-facebook2"></i></a></li>
+                                    <li><a href="#"><i class="icon-twitter2"></i></a></li>
+                                    <li><a href="#"><i class="icon-linkedin2"></i></a></li>
+                                    <li><a href="#"><i class="icon-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="colorlib-counter" class="colorlib-counters" style="background-image: url('{% static 'images/img_bg_2.jpg' %}');" data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 text-center animate-box">
+                                <span class="icon"><i class="flaticon-healthy"></i></span>
+                                <span class="colorlib-counter js-counter" data-from="0" data-to="3297" data-speed="5000" data-refresh-interval="50"></span>
+                                <span class="colorlib-counter-label">Зарегистрированных пациентов</span>
+                            </div>
+                            <div class="col-md-3 col-sm-6 text-center animate-box">
+                                <span class="icon"><i class="flaticon-hospital"></i></span>
+                                <span class="colorlib-counter js-counter" data-from="0" data-to="378" data-speed="5000" data-refresh-interval="50"></span>
+                                <span class="colorlib-counter-label">Специалистов</span>
+                            </div>
+                            <div class="col-md-3 col-sm-6 text-center animate-box">
+                                <span class="icon"><i class="flaticon-healthy-1"></i></span>
+                                <span class="colorlib-counter js-counter" data-from="0" data-to="400" data-speed="5000" data-refresh-interval="50"></span>
+                                <span class="colorlib-counter-label">Оставлено отзывов</span>
+                            </div>
+                            <div class="col-md-3 col-sm-6 text-center animate-box">
+                                <span class="icon"><i class="flaticon-ambulance"></i></span>
+                                <span class="colorlib-counter js-counter" data-from="0" data-to="30" data-speed="5000" data-refresh-interval="50"></span>
+                                <span class="colorlib-counter-label">Записей на прием</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="colorlib-testimonial" class="colorlib-bg-section">
+            <div class="container">
+                <div class="row animate-box">
+                    <div class="col-md-6 col-md-offset-3 text-center colorlib-heading">
+                        <h2>Что о нас говорят пациенты</h2>
+                        <p>Последние отзывы оставленные нашим специалистам</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 animate-box">
+                        <div class="owl-carousel">
+                            <div class="item">
+                                <div class="testimony text-center">
+                                    <span class="img-user" style="background-image: url('{% static 'images/person1.jpg' %}');"></span>
+                                    <span class="user">Edward Tom</span>
+                                    <blockquote>
+                                        <p>"The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli."</p>
+                                        <p class="color"><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span></p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="testimony text-center">
+                                    <span class="img-user" style="background-image: url('{% static 'images/person2.jpg' %}');"></span>
+                                    <span class="user">Carl Bean</span>
+                                    <blockquote>
+                                        <p>"The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli."</p>
+                                        <p class="color"><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span></p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="testimony text-center">
+                                    <span class="img-user" style="background-image: url('{% static 'images/person3.jpg' %}');"></span>
+                                    <span class="user">John Bay</span>
+                                    <blockquote>
+                                        <p>"The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli."</p>
+                                        <p class="color"><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span></p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="testimony text-center">
+                                    <span class="img-user" style="background-image: url('{% static 'images/person1.jpg' %}');"></span>
+                                    <span class="user">Ronald Duck</span>
+                                    <blockquote>
+                                        <p>"The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli."</p>
+                                        <p class="color"><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span></p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="testimony text-center">
+                                    <span class="img-user" style="background-image: url('{% static 'images/person2.jpg' %}');"></span>
+                                    <span class="user">Justine Mill</span>
+                                    <blockquote>
+                                        <p>"The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli."</p>
+                                        <p class="color"><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span><span><i class="icon-star3"></i></span></p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
