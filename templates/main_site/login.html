@@ -8,8 +8,13 @@
             <div class="registration-form__wrap">
                 <fieldset id="registration-inputs">
                     <h1>Авторизация</h1>
-                    <input id="username" type="text" placeholder="Логин" autofocus required>
-                    <input id="password" type="password" placeholder="Пароль" required>
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    {{ form.email.errors }}
+
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                    {{ form.password.errors }}
                 </fieldset>
             </div>
             <div class="registration-actions__wrap">

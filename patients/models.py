@@ -13,6 +13,10 @@ class Patient(models.Model):
 
     def __str__ (self):
         return '%s %s %s'%(self.name, self.second_name, self.third_name)
+
+    def delete(self, *args, **kwargs):
+        self.user.delete()
+        return super(self.__class__, self).delete(*args, **kwargs)
     
     class Meta:
         verbose_name = 'Пациент'

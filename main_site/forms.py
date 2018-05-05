@@ -1,5 +1,7 @@
 from django import forms
 from patients.models import Patient
+from django.contrib.auth.models import User
+
 
 
 class BaseForm(forms.Form):
@@ -12,12 +14,7 @@ class BaseForm(forms.Form):
     birth_date = forms.DateField(label='Дата рождения', input_formats=['%d-%m-%Y', '%d/%m/%Y', '%d.%m.%Y'])
     phone = forms.RegexField(label='Телефон', regex=r'^\+?1?\d{9,15}$')
 
-    def clean(self):
-        cleaned_data = super(UserForm, self).clean()
-        password = cleaned_data.get("password")
-        confirm_password = cleaned_data.get("confirm_password")
-
-        if password != confirm_password:
-            raise forms.ValidationError(
-                "Введенные пароли не совпадают"
-            )
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('email', 'password')

@@ -4,69 +4,69 @@
 
 <section>
     <div class="register-wrap animate-box">
-        <form id="registration-form">
+        <form id="registration-form" method="POST">{% csrf_token %}
             <div class="registration-form__wrap">
                 <fieldset class="registration-inputs">
                     <h1>Регистрация</h1>
-                    {{ form.email.errors }}
                     {{ form.email.label_tag }}
                     {{ form.email }}
+                    {{ form.email.errors }}
 
-                    {{ form.password.errors }}
                     {{ form.password.label_tag }}
                     {{ form.password }}
+                    {{ form.password.errors }}
 
-                    {{ form.confirm_password.errors }}
                     {{ form.confirm_password.label_tag }}
                     {{ form.confirm_password }}
+                    {{ form.confirm_password.errors }}
 
-                    {{ form.name.errors }}
                     {{ form.name.label_tag }}
                     {{ form.name }}
+                    {{ form.name.errors }}
 
-                    {{ form.second_name.errors }}
                     {{ form.second_name.label_tag }}
                     {{ form.second_name }}
+                    {{ form.second_name.errors }}
 
-                    {{ form.third_name.errors }}
                     {{ form.third_name.label_tag }}
                     {{ form.third_name }}
+                    {{ form.third_name.errors }}
 
-                    {{ form.birth_date.errors }}
                     {{ form.birth_date.label_tag }}
                     {{ form.birth_date }}
+                    {{ form.birth_date.errors }}
 
-                    {{ form.phone.errors }}
                     {{ form.phone.label_tag }}
                     {{ form.phone }}
+                    {{ form.phone.errors }}
                 </fieldset>
             </div>
             <div class="registration-form__wrap">
               <div class="row">
                 <div class="col-12 col-sm-6">
-                    <button class="btn btn-secondary btn-req-patient" onclick="change_reg_type('patient');">Я пациент</button>
+                    <button class="btn btn-secondary btn-req-patient" type="button" onclick="change_reg_type('patient');">Я пациент</button>
                 </div>
                 <div class="col-12 col-sm-6">
-                    <button class="btn btn-secondary btn-req-doctor" onclick="change_reg_type('doctor');">Я специалист</button>
+                    <button class="btn btn-secondary btn-req-doctor" type="button" onclick="change_reg_type('doctor');">Я специалист</button>
                 </div>
               </div>
             </div>
             <div class="registration-form__wrap patient-registration" style="display:none;">
                 <fieldset class="registration-inputs">
-                    {{ patient_form.address.errors }}
                     {{ patient_form.address.label_tag }}
                     {{ patient_form.address }}
+                    {{ patient_form.address.errors }}
                 </fieldset>
             </div>
             <div class="registration-form__wrap doctor-registration" style="display:none;">
                 <fieldset class="registration-inputs">
-                    {{ doctor_form.specialty.errors }}
                     {{ doctor_form.specialty.label_tag }}
                     {{ doctor_form.specialty }}
+                    {{ doctor_form.specialty.errors }}
 
-                    {{ doctor_form.qualification.errors }}
                     {{ doctor_form.qualification.label_tag }}
                     {{ doctor_form.qualification }}
+                    {{ doctor_form.qualification.errors }}
                 </fieldset>
             </div>
             <div class="registration-actions__wrap">

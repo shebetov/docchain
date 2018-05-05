@@ -34,6 +34,7 @@
                             <div class="col-xs-8">
                                 <div class="menu-1">
                                     <ul>
+                                        
                                         <li {% if request.get_full_path == '/' %}class="active"{% endif %}><a href="/">Главная</a></li>
                                         <li {% if request.get_full_path == '/doctors/' %}class="active"{% endif %}><a href="/doctors">Специалисты</a></li>
                                         <li {% if request.get_full_path == '/about_organization/' %}class="active"{% endif %}><a href="/about_organization">О поликлинике</a></li>
@@ -45,8 +46,19 @@
                             <div class="col-md-4">
                                 <div class="menu-1">
                                     <ul>
+                                        {% if user.is_authenticated %}
+                                        <li class="has-dropdown">
+                                            <a href="/profile">{{ user.email }}</a>
+                                            <ul class="dropdown">
+                                                <li><a href="/profile">Профиль</a></li>
+                                                <li><a href="/profile/settings">Настройки</a></li>
+                                                <li><a href="/profile/logout">Выйти</a></li>
+                                            </ul>
+                                        </li>
+                                        {% else %}
                                         <li><a href="/login" class="btn btn-primary btn-sm" style="padding: 5px; display: inherit;">Войти</a></li>
                                         <li><a href="/registration">Регистрация</a></li>
+                                        {% endif %}
                                     </ul>
                                 </div>
                             </div>
