@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.core.exceptions import ObjectDoesNotExist
 from .forms import BaseForm, LoginForm
 from patients.forms import PatientForm
 from patients.models import Patient
@@ -15,10 +17,19 @@ def login(request):
     if request.POST:
         form = LoginForm(request.POST)
         if form.is_valid():
-            user = authenticate(request, email=form.cleaned_data['email'], password=form.cleaned_data['email'])
-            if user is not None:
-                login(request, user)
-                redirect('/')
+            try:
+                user = User.objects.get(email=form.cleaned_data['email'])
+            except ObjectDoesNotExist:
+                form.add_error('email', 'Пользователь с таким email не найден')
+                user = None
+
+            if user is None:
+                pass
+            elif user.password != form.cleaned_data['password']:
+                form.add_error('password', 'Неверный пароль')
+            else:
+                auth_login(request, user)
+                return redirect('/')
     else:
         form = LoginForm()
 

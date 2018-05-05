@@ -15,6 +15,8 @@ class BaseForm(forms.Form):
     phone = forms.RegexField(label='Телефон', regex=r'^\+?1?\d{9,15}$')
 
 class LoginForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput(), label='Пароль')
+    
     class Meta:
         model = User
         fields = ('email', 'password')

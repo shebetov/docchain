@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.urls import path
 import main_site.views as main_site_views
 import doctors.views as doctors_views
+from django.contrib.auth.views import logout
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', main_site_views.login),
+    path('profile/logout/', logout, {'next_page': '/'}),
     path('registration/', main_site_views.registration),
     path('doctors/', doctors_views.doctors),
     path('appointment/', doctors_views.appointment),

@@ -44,14 +44,14 @@
             <div class="registration-form__wrap">
               <div class="row">
                 <div class="col-12 col-sm-6">
-                    <button class="btn btn-secondary btn-req-patient" type="button" onclick="change_reg_type('patient');">Я пациент</button>
+                    <button class="btn btn-primary btn-req-patient" type="button" onclick="change_reg_type('patient');">Я пациент</button>
                 </div>
                 <div class="col-12 col-sm-6">
                     <button class="btn btn-secondary btn-req-doctor" type="button" onclick="change_reg_type('doctor');">Я специалист</button>
                 </div>
               </div>
             </div>
-            <div class="registration-form__wrap patient-registration" style="display:none;">
+            <div class="registration-form__wrap patient-registration">
                 <fieldset class="registration-inputs">
                     {{ patient_form.address.label_tag }}
                     {{ patient_form.address }}

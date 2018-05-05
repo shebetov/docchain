@@ -6,7 +6,7 @@
     <div class="register-wrap animate-box">
         <form id="registration-form" class="form" method="post" action="." >{% csrf_token %}
             <div class="registration-form__wrap">
-                <fieldset id="registration-inputs">
+                <fieldset class="registration-inputs">
                     <h1>Авторизация</h1>
                     {{ form.email.label_tag }}
                     {{ form.email }}
@@ -18,7 +18,7 @@
                 </fieldset>
             </div>
             <div class="registration-actions__wrap">
-                <fieldset id="registration-actions">
+                <fieldset class="registration-actions">
                     <input type="submit" id="register" value="ВОЙТИ">
                 </fieldset>
             </div>
