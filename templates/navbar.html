@@ -34,19 +34,19 @@
                             <div class="col-xs-8">
                                 <div class="menu-1">
                                     <ul>
-                                        <li class="active"><a href="/">Главная</a></li>
-                                        <li><a href="/doctors">Специалисты</a></li>
-                                        <li><a href="/about_organization">О поликлинике</a></li>
-                                        <li><a href="/about_docchain">О DocChain</a></li>
-                                        <li><a href="/contact">Контакты</a></li>
+                                        <li {% if request.get_full_path == '/' %}class="active"{% endif %}><a href="/">Главная</a></li>
+                                        <li {% if request.get_full_path == '/doctors/' %}class="active"{% endif %}><a href="/doctors">Специалисты</a></li>
+                                        <li {% if request.get_full_path == '/about_organization/' %}class="active"{% endif %}><a href="/about_organization">О поликлинике</a></li>
+                                        <li {% if request.get_full_path == '/about_docchain/' %}class="active"{% endif %}><a href="/about_docchain">О DocChain</a></li>
+                                        <li {% if request.get_full_path == '/contact/' %}class="active"{% endif %}><a href="/contact">Контакты</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="menu-1">
                                     <ul>
-                                        <li><a href="#login" class="btn btn-primary btn-sm popup-login" style="padding: 5px; display: inherit;">Войти</a></li>
-                                        <li><a href="registration">Регистрация</a></li>
+                                        <li><a href="/login" class="btn btn-primary btn-sm" style="padding: 5px; display: inherit;">Войти</a></li>
+                                        <li><a href="/registration">Регистрация</a></li>
                                     </ul>
                                 </div>
                             </div>

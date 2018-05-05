@@ -20,6 +20,7 @@ import doctors.views as doctors_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', main_site_views.login),
     path('registration/', main_site_views.registration),
     path('doctors/', doctors_views.doctors),
     path('appointment/', doctors_views.appointment),

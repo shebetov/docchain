@@ -1,26 +1,82 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+
 <section>
     <div class="register-wrap animate-box">
         <form id="registration-form">
             <div class="registration-form__wrap">
-                <fieldset id="registration-inputs">
+                <fieldset class="registration-inputs">
                     <h1>Регистрация</h1>
-                    <input id="name" type="text" placeholder="Имя" autofocus required>
-                    <input id="password" type="password" placeholder="Пароль" required>
-                    <input id="repeat-password" type="password" placeholder="Повторить пароль" required>
-                    <input id="mail" type="text" placeholder="Email" required>
-                    <input id="phone" type="text" placeholder="Телефон (не обязательно)">
+                    {{ form.email.errors }}
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+
+                    {{ form.password.errors }}
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+
+                    {{ form.confirm_password.errors }}
+                    {{ form.confirm_password.label_tag }}
+                    {{ form.confirm_password }}
+
+                    {{ form.name.errors }}
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+
+                    {{ form.second_name.errors }}
+                    {{ form.second_name.label_tag }}
+                    {{ form.second_name }}
+
+                    {{ form.third_name.errors }}
+                    {{ form.third_name.label_tag }}
+                    {{ form.third_name }}
+
+                    {{ form.birth_date.errors }}
+                    {{ form.birth_date.label_tag }}
+                    {{ form.birth_date }}
+
+                    {{ form.phone.errors }}
+                    {{ form.phone.label_tag }}
+                    {{ form.phone }}
+                </fieldset>
+            </div>
+            <div class="registration-form__wrap">
+              <div class="row">
+                <div class="col-12 col-sm-6">
+                    <button class="btn btn-secondary btn-req-patient" onclick="change_reg_type('patient');">Я пациент</button>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <button class="btn btn-secondary btn-req-doctor" onclick="change_reg_type('doctor');">Я специалист</button>
+                </div>
+              </div>
+            </div>
+            <div class="registration-form__wrap patient-registration" style="display:none;">
+                <fieldset class="registration-inputs">
+                    {{ patient_form.address.errors }}
+                    {{ patient_form.address.label_tag }}
+                    {{ patient_form.address }}
+                </fieldset>
+            </div>
+            <div class="registration-form__wrap doctor-registration" style="display:none;">
+                <fieldset class="registration-inputs">
+                    {{ doctor_form.specialty.errors }}
+                    {{ doctor_form.specialty.label_tag }}
+                    {{ doctor_form.specialty }}
+
+                    {{ doctor_form.qualification.errors }}
+                    {{ doctor_form.qualification.label_tag }}
+                    {{ doctor_form.qualification }}
                 </fieldset>
             </div>
             <div class="registration-actions__wrap">
-                <fieldset id="registration-actions">
+                <fieldset class="registration-actions">
                     <input type="submit" id="register" value="Зарегистрироваться">
                 </fieldset>
             </div>
         </form>
     </div>
+    <script src="{% static 'js/registration.js' %}"></script>
 </section>
 
 {% endblock %}
