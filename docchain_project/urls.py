@@ -26,6 +26,7 @@ urlpatterns = [
     path('profile/logout/', logout, {'next_page': '/'}),
     path('registration/', main_site_views.registration),
     path('doctors/', doctors_views.doctors),
+    path('doctors/livesearch/', doctors_views.livesearch),
     path('appointment/', doctors_views.appointment),
     path('about_organization/', main_site_views.about_organization),
     path('about_docchain/', main_site_views.about_docchain),
