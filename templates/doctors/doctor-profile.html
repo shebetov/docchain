@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div id="colorlib-doctor">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <img class="img-responsive img-circle my-avatar" src="{% get_media_prefix %}{{ doctor.profile_image }}" alt="">
+            </div>
+            <div class="col-sm-4">
+                <h2><a href="doctors-single.html">{{ doctor.second_name }} {{ doctor.name }} {{ doctor.third_name }}</a></h2>
+                <span>{{ doctor.specialty }} - {{ doctor.qualification }}</span>
+            </div>
+        </div>
+        <p>
+        <div class="row">
+            <div class="col-md-8 image-content">
+                <div class="doctor animate-box">
+                    <div class="contact-info">
+                        <!--h2>Контакты</h2-->
+                        <p><i class="icon-location4"></i>Текущий кабинет: {{ doctor.current_room.number }}</p>
+                        <p><i class="icon-phone-outline"></i>{{ doctor.phone }}</p>
+                        <p><i class="icon-mail"></i>{% if doctor.user == None %}Нет email-а{% else %}{{ doctor.user.email }}{% endif %}</p>
+                    </div>
+                    <div class="comment-area">
+                        {% if reviews.count == 0 %}
+                            <h2>Отзывов нет</h2>
+                        {% else %}
+                            <h2>Отзывы</h2>
+                            <div class="row">
+                                {% for review in reviews %}
+                                    <div class="comment-wrap">
+                                        <div class="col-sm-1">
+                                            <div class="thumbnail">
+                                                <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                                            </div>
+                                            <!-- /thumbnail -->
+                                        </div>
+                                        <!-- /col-sm-1 -->
+                                        <div class="col-sm-11">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <strong>{{ review.title }}</strong> <span class="text-muted">{{ review.create_date }}</span>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <p>{{ review.text }}</p>
+                                                </div>
+                                                <!-- /panel-body -->
+                                            </div>
+                                            <!-- /panel panel-default -->
+                                        </div>
+                                        <!-- /col-sm-5 -->
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 sticky-parent">
+                <div id="sticky_item">
+                    <h3>График Работы</h3>
+                    <div class="schedule">
+                        <span class="icon"><i class="icon-calendar3"></i></span>
+                        <div class="desc">
+                            <span>Monday</span>
+                            <span>8:00 am - 12:00 pm</span>
+                            <h4>Liposuction</h4>
+                        </div>
+                    </div>
+                    <div class="schedule">
+                        <span class="icon"><i class="icon-calendar3"></i></span>
+                        <div class="desc">
+                            <span>Tuesday</span>
+                            <span>8:00 am - 12:00 pm</span>
+                            <h4>Reconstructive Surgery</h4>
+                        </div>
+                    </div>
+                    <div class="schedule">
+                        <span class="icon"><i class="icon-calendar3"></i></span>
+                        <div class="desc">
+                            <span>Thursday</span>
+                            <span>8:00 am - 12:00 pm</span>
+                            <h4>Liposuction</h4>
+                        </div>
+                    </div>
+                    <p class="btn-big"><a href="appointment.html" class="btn btn-primary">Записаться на прием</a></p>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="comment-area">
+                    <h2>Leave a comment</h2>
+                    <form action="#">
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <!-- <label for="fname">First Name</label> -->
+                                <input type="text" id="fname" class="form-control marginbottom" placeholder="Your firstname">
+                            </div>
+                            <div class="col-md-6">
+                                <!-- <label for="lname">Last Name</label> -->
+                                <input type="text" id="lname" class="form-control" placeholder="Your lastname">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <!-- <label for="email">Email</label> -->
+                                <input type="text" id="email" class="form-control" placeholder="Your email address">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <!-- <label for="message">Message</label> -->
+                                <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Post Comment" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

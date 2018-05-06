@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from PIL import Image
 
 
 
@@ -13,6 +14,20 @@ WEAK_DAYS = (
     ('su', 'Воскресенье'),
 )
 
+def resize_image(file_name, size=500, background_color=(255, 255, 255)):
+    image = Image.open(file_name)
+    if image.size[0] > image.size[1]:
+        ratio = (size / float(image.size[0]))
+        new_size = (size, int(image.size[1] * ratio))
+    elif image.size[0] < image.size[1]:
+        ratio = (size / float(image.size[1]))
+        new_size = (int(image.size[0] * ratio), size)
+    else:
+        new_size = (size, size)
+    image = image.resize(new_size, Image.ANTIALIAS)
+    new_image = Image.new("RGB", (size, size), background_color)
+    new_image.paste(image, ((size-image.size[0])//2, (size-image.size[1])//2))
+    new_image.save(file_name, quality=95)
 
 class Specialty(models.Model):
     name = models.CharField(verbose_name='Название специальности', max_length=200, blank=False)
@@ -71,9 +86,20 @@ class Doctor(models.Model):
     working_hours = models.ManyToManyField(verbose_name='Время работы', to=WorkingHour, blank=False, default=list(), symmetrical=False, related_name='+')
     phone = models.CharField(verbose_name='Номер телефона', max_length=20, blank=False)
     current_room = models.ForeignKey(verbose_name='Текущий кабинет', to=Room, blank=True, null=True, related_name='current_doctors', on_delete=models.SET_NULL)
+    
+    image_height = models.PositiveIntegerField(null=True, blank=True, editable=False, default=500)
+    image_width = models.PositiveIntegerField(null=True, blank=True, editable=False, default=500)
+    profile_image = models.ImageField(upload_to='doctors/', height_field='image_height', width_field='image_width', null=True, blank=True)
 
     def __str__ (self):
         return '%s %s %s'%(self.name, self.second_name, self.third_name)
+
+    def save(self):
+        super(Doctor, self).save()
+
+        if not self.profile_image:
+            return
+        resize_image(self.profile_image.path)
     
     class Meta:
         verbose_name = 'Специалист'

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Doctor
 import utils.search_engine as search_engine
@@ -22,3 +22,10 @@ def livesearch(request):
 
 def appointment(request):
     return render(request, 'doctors/appointment.html')
+
+def profile(request):
+	if request.GET and (request.GET.get('id') is not None):
+		doc = Doctor.objects.get(id=request.GET['id'])
+		return render(request, 'doctors/doctor-profile.html', {'doctor': doc, 'reviews': doc.reviews.order_by('-id')})
+	else:
+		redirect('/doctors/')

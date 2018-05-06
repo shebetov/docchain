@@ -18,6 +18,8 @@ from django.urls import path
 import main_site.views as main_site_views
 import doctors.views as doctors_views
 from django.contrib.auth.views import logout
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -27,9 +29,10 @@ urlpatterns = [
     path('registration/', main_site_views.registration),
     path('doctors/', doctors_views.doctors),
     path('doctors/livesearch/', doctors_views.livesearch),
+    path('doctors/profile/', doctors_views.profile),
     path('appointment/', doctors_views.appointment),
     path('about_organization/', main_site_views.about_organization),
     path('about_docchain/', main_site_views.about_docchain),
     path('contact/', main_site_views.contact),
     path('', main_site_views.home)
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
