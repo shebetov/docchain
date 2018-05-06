@@ -7,18 +7,26 @@ from .forms import BaseForm, LoginForm
 from patients.forms import PatientForm
 from patients.models import Patient
 from doctors.forms import DoctorForm
-from doctors.forms import Doctor
+from doctors.models import Doctor, Review, Appointment
 
 
 def home(request):
-    return render(request, 'main_site/home.html')
+    context = {
+        'top_doctors': Doctor.objects.order_by('-review_rate')[:4],
+        'best_reviews': Review.objects.order_by('-rate')[:10],
+        'stat__patient_count': Patient.objects.count(),
+        'stat__doctor_count': Doctor.objects.count(),
+        'stat__review_count': Review.objects.count(),
+        'stat__appointment_count': Appointment.objects.count()
+    }
+    return render(request, 'main_site/home.html', context)
 
 def login(request):
     if request.POST:
         form = LoginForm(request.POST)
         if form.is_valid():
             try:
-                user = User.objects.get(email=form.cleaned_data['email'])
+                user = User.objects.get(username=form.cleaned_data['email'])
             except ObjectDoesNotExist:
                 form.add_error('email', 'Пользователь с таким email не найден')
                 user = None
@@ -29,6 +37,8 @@ def login(request):
                 form.add_error('password', 'Неверный пароль')
             else:
                 auth_login(request, user)
+                if request.GET and (request.GET.get('next') is not None):
+                    return redirect(request.GET['next'])
                 return redirect('/')
     else:
         form = LoginForm()
@@ -38,11 +48,9 @@ def login(request):
 def registration(request):
     if request.method == 'POST':
         form = BaseForm(request.POST)
-        print(form.data)
         patient_form = PatientForm(request.POST)
         doctor_form = DoctorForm(request.POST)
         if form.is_valid() and (form.cleaned_data['password'] != form.cleaned_data['confirm_password']):
-            print('yes')
             form.add_error('confirm_password', 'Введенные пароли не совпадают')
         elif form.is_valid() and patient_form.is_valid():
             new_patient = Patient(

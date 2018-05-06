@@ -4,7 +4,7 @@
 
 <section>
     <div class="register-wrap animate-box">
-        <form id="registration-form" class="form" method="post" action="." >{% csrf_token %}
+        <form id="registration-form" class="form" method="post" action=".?next={{ request.GET.next }}" >{% csrf_token %}
             <div class="registration-form__wrap">
                 <fieldset class="registration-inputs">
                     <h1>Авторизация</h1>

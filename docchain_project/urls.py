@@ -25,7 +25,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', main_site_views.login),
-    path('profile/logout/', logout, {'next_page': '/'}),
+    path('profile/logout/', logout),# {'next_page': '/'}),
     path('registration/', main_site_views.registration),
     path('doctors/', doctors_views.doctors),
     path('doctors/livesearch/', doctors_views.livesearch),

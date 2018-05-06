@@ -6,3 +6,9 @@ class DoctorForm(forms.ModelForm):
     class Meta:
         model = Doctor
         fields = ('specialty', 'qualification')
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ('rate', 'title', 'text')

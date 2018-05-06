@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom: 50px;">
                 <input id="pac-input" class="controls dropdown-toggle pac-input" data-toggle="dropdown" type="text" placeholder="Найти специалиста..." onkeyup="showResult(this.value)">
-                <div id="livesearch" class="dropdown-menu my-dropdown-menu"></div>
+                <div id="livesearch" class="my-dropdown-menu"></div>
             </div>
         </div>
         <div class="row animate-box">
@@ -18,16 +18,16 @@
         </div>
         <div class="row">
             {% for doctor in top_doctors %}
-            <div class="col-md-3 col-sm-6 col-xs-12 animate-box text-center">
-                <div class="doctor">
-                    <div class="staff-img" style="background-image: url({% static 'images/staff-4.jpg' %});"></div>
-                    <div class="desc">
-                        <h3><a href="#">{{ doctor.second_name }} {{ doctor.name }} {{ doctor.third_name }}</a></h3>
-                        <span>{{ doctor.specialty }}</span>
-                        <button type="button" class="btn btn-primary" style="width: 100%">Профиль</button>
+                <div class="col-md-3 col-sm-6 col-xs-12 animate-box text-center">
+                    <div class="doctor">
+                        <div class="staff-img" style="background-image: url({% get_media_prefix %}{% if doctor.profile_image == None %}doctors/default_avatar.jpg{% else %}{{ doctor.profile_image }}{% endif %});"></div>
+                        <div class="desc">
+                            <h3><a href="#">{{ doctor.second_name }} {{ doctor.name }} {{ doctor.third_name }}</a></h3>
+                            <span>{{ doctor.specialty }}</span>
+                            <a class="btn btn-primary" style="width: 100%" href='/doctors/profile?id={{ doctor.id }}'>Профиль</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
     </div>

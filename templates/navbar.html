@@ -52,11 +52,11 @@
                                             <ul class="dropdown">
                                                 <li><a href="/profile">Профиль</a></li>
                                                 <li><a href="/profile/settings">Настройки</a></li>
-                                                <li><a href="/profile/logout">Выйти</a></li>
+                                                <li><a href="/profile/logout?next={{request.get_full_path}}">Выйти</a></li>
                                             </ul>
                                         </li>
                                         {% else %}
-                                        <li><a href="/login" class="btn btn-primary btn-sm" style="padding: 5px; display: inherit;">Войти</a></li>
+                                        <li><a href="/login?next={{request.get_full_path}}" class="btn btn-primary btn-sm" style="padding: 5px; display: inherit;">Войти</a></li>
                                         <li><a href="/registration">Регистрация</a></li>
                                         {% endif %}
                                     </ul>
