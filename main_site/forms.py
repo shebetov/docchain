@@ -20,3 +20,7 @@ class LoginForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'password')
+
+class ImageUploadForm(forms.Form):
+    """Image upload form."""
+    image = forms.ImageField()

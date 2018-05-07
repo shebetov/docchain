@@ -2,6 +2,10 @@
 
 {% block content %}
 {% load static %}
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/caleandar.css' %}">
+<script src="{% static 'js/caleandar.min.js' %}"></script>
+<script src="{% static 'js/appointment.js' %}"></script>
 <div id="colorlib-contact">
             <div class="container">
                 <div class="row animate-box">
@@ -12,59 +16,41 @@
                 </div>
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <form action="#" class="appointment-wrap animate-box">
-                            <div class="row form-group">
-                                <div class="col-md-6">
-                                    <label for="fname">Имя</label>
-                                    <input type="text" id="fname" class="form-control" placeholder="Ваше имя">
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="lname">Фамилия</label>
-                                    <input type="text" id="lname" class="form-control" placeholder="Ваша фамилия">
+                        <form action="/doctors/api/create_appointment" method="post" class="appointment-wrap animate-box">{% csrf_token %}
+                            <div class="row">
+                                <div class="col col-md-12" style="margin-bottom: 50px;">
+                                    <input id="pac-input" class="controls dropdown-toggle pac-input" data-toggle="dropdown" type="text" placeholder="Выберите специалиста..." onkeyup="showResult(this.value)">
+                                    <div id="livesearch" class="my-dropdown-menu"></div>
                                 </div>
                             </div>
-
-                            <div class="row form-group">
-                                <div class="col-md-12">
-                                    <label for="email">Email</label>
-                                    <input type="text" id="email" class="form-control" placeholder="Your email address">
-                                </div>
-                            </div>
-
-                            <div class="row form-group">
-                                <div class="col-md-12">
-                                    <label for="subject">Contact Number</label>
-                                    <input type="text" id="subject" class="form-control" placeholder="Your Contact Number">
-                                </div>
-                            </div>
-
-                            <div class="row form-group">
-                                <div class="col-md-12">
-                                    <label for="subject">Choose Your Subject</label>
-                                    <select class="selectpicker form-control">
-                                    <option>Choose Your Subject</option>
-                                   <option>Main Surgery</option>
-                                   <option>Plastic Surgery</option>
-                                   <option>Dental</option>
-                                   <option>Other</option>
-                                </select>
-
-                                </div>
-                            </div>
-
-                            <div class="row form-group">
-                                <div class="col-md-12">
-                                    <label for="message">Message</label>
-                                    <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Your Message"></textarea>
-                                </div>
-                            </div>
+                            <input id="choosed-doctor" class="hidden" name="doctor">
+                            <div id="caleandar" style="display: none;"></div>
+                            <input id="choosed-date" class="hidden" name="date">
+                            <div id='time-picker' class="btn-group" style="display: none;"></div>
+                            <input id="choosed-time" class="hidden" name="time">
+                            <hr>
                             <div class="form-group">
-                                <input type="submit" value="Send Message" class="btn btn-primary">
+                                <input id="time-picker-submit" type="submit" value="Записаться" class="btn btn-primary" style="display: none;">
                             </div>
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
+<script type="text/javascript">
+var events = [
+  {'Date': new Date(2016, 6, 7), 'Title': 'Doctor appointment at 3:25pm.'},
+  {'Date': new Date(2016, 6, 18), 'Title': 'New Garfield movie comes out!', 'Link': 'https://garfield.com'},
+  {'Date': new Date(2016, 6, 27), 'Title': '25 year anniversary', 'Link': 'https://www.google.com.au/#q=anniversary+gifts'},
+];
+var settings = {};
+var element = document.getElementById('caleandar');
+caleandar(element, events, settings);
+$('.cld-day.today').removeClass('today');
+$('.cld-number').click(function() {
+    on_date_choosed(this);
+})
+</script>
+<script src="{% static 'js/livesearch_choose.js' %}"></script>
 {% endblock %}

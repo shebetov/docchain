@@ -25,14 +25,16 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', main_site_views.login),
-    path('profile/logout/', logout),# {'next_page': '/'}),
+    path('my_profile/', main_site_views.my_profile),
+    path('profile/logout/', logout),
     path('registration/', main_site_views.registration),
     path('doctors/', doctors_views.doctors),
-    path('doctors/livesearch/', doctors_views.livesearch),
     path('doctors/profile/', doctors_views.profile),
+    path('doctors/api/<func_name>', doctors_views.api),
     path('appointment/', doctors_views.appointment),
     path('about_organization/', main_site_views.about_organization),
     path('about_docchain/', main_site_views.about_docchain),
     path('contact/', main_site_views.contact),
+    path('api/<func_name>', main_site_views.api),
     path('', main_site_views.home)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

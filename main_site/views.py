@@ -3,11 +3,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import BaseForm, LoginForm
+from .forms import BaseForm, LoginForm, ImageUploadForm
 from patients.forms import PatientForm
 from patients.models import Patient
 from doctors.forms import DoctorForm
 from doctors.models import Doctor, Review, Appointment
+from django.contrib.auth.decorators import login_required
+import utils.user_profile
+
 
 
 def home(request):
@@ -67,11 +70,25 @@ def registration(request):
                 password=form.cleaned_data['password']
             )
             new_patient.save()
-            
+            auth_login(request, new_patient.user)
             return redirect('/')
         elif form.is_valid() and doctor_form.is_valid():
-            new_user = User(email=form.cleaned_data['email'], password=form.cleaned_data['password'])
-            print(new_user)
+            new_doctor = Doctor(
+                name=form.cleaned_data['name'],
+                second_name=form.cleaned_data['second_name'],
+                third_name=form.cleaned_data['third_name'],
+                birth_date=form.cleaned_data['birth_date'],
+                phone=form.cleaned_data['phone'],
+                specialty=patient_form.cleaned_data['specialty'],
+                qualification=patient_form.cleaned_data['qualification']
+            )
+            new_doctor.user = User.objects.create(
+                username=form.cleaned_data['email'], 
+                email=form.cleaned_data['email'], 
+                password=form.cleaned_data['password']
+            )
+            new_doctor.save()
+            auth_login(request, new_doctor.user)
             return redirect('/')
     else:
         form = BaseForm()
@@ -87,3 +104,28 @@ def about_docchain(request):
 
 def contact(request):
     return render(request, 'main_site/contact.html')
+
+@login_required
+def my_profile(request):
+    profile_type = utils.user_profile.get_profile_type(request.user)
+    return render(request, 'main_site/my_profile.html', {'profile_type': profile_type, 'patient': getattr(request.user, 'patient_profile', None), 'doctor': getattr(request.user, 'doctor_profile', None)})
+
+
+def api(request, func_name):
+    if request.method == 'POST':
+        if func_name == 'update_profile_image':
+            form = ImageUploadForm(request.POST, request.FILES)
+            if form.is_valid():
+                profile_type = utils.user_profile.get_profile_type(request.user)
+                if profile_type == 'patient':
+                    profile = request.user.patient_profile
+                elif profile_type == 'doctor':
+                    profile = request.user.doctor_profile
+                else:
+                    return redirect('/')
+                profile.profile_image = form.cleaned_data['image']
+                print(profile.profile_image)
+                profile.save()
+            return redirect('/my_profile/')
+
+    return redirect('/')

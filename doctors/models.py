@@ -113,10 +113,10 @@ class ElQueueTicket(models.Model):
 class Appointment(models.Model):
     doctor = models.ForeignKey(verbose_name='Специалист', to=Doctor, blank=False, related_name='appointments', on_delete=models.CASCADE)
     patient = models.ForeignKey(verbose_name='Пациент', to='patients.Patient', blank=False, related_name='appointments', on_delete=models.CASCADE)
-    date = models.DateTimeField(verbose_name='Дата записи', blank=False)
+    create_date = models.DateTimeField(verbose_name='Дата записи', blank=False)
 
     def __str__ (self):
-        return 'Запись(%s) %s'%(self.date, str(self.doctor))
+        return 'Запись(%s) %s'%(self.create_date, str(self.doctor))
 
     class Meta:
         verbose_name = 'Запись на прием'
