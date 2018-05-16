@@ -53,43 +53,44 @@ def registration(request):
         form = BaseForm(request.POST)
         patient_form = PatientForm(request.POST)
         doctor_form = DoctorForm(request.POST)
-        if form.is_valid() and (form.cleaned_data['password'] != form.cleaned_data['confirm_password']):
-            form.add_error('confirm_password', 'Введенные пароли не совпадают')
-        elif form.is_valid() and patient_form.is_valid():
-            new_patient = Patient(
-                name=form.cleaned_data['name'],
-                second_name=form.cleaned_data['second_name'],
-                third_name=form.cleaned_data['third_name'],
-                birth_date=form.cleaned_data['birth_date'],
-                address=patient_form.cleaned_data['address'],
-                phone=form.cleaned_data['phone']
-            )
-            new_patient.user = User.objects.create(
-                username=form.cleaned_data['email'], 
-                email=form.cleaned_data['email'], 
-                password=form.cleaned_data['password']
-            )
-            new_patient.save()
-            auth_login(request, new_patient.user)
-            return redirect('/')
-        elif form.is_valid() and doctor_form.is_valid():
-            new_doctor = Doctor(
-                name=form.cleaned_data['name'],
-                second_name=form.cleaned_data['second_name'],
-                third_name=form.cleaned_data['third_name'],
-                birth_date=form.cleaned_data['birth_date'],
-                phone=form.cleaned_data['phone'],
-                specialty=patient_form.cleaned_data['specialty'],
-                qualification=patient_form.cleaned_data['qualification']
-            )
-            new_doctor.user = User.objects.create(
-                username=form.cleaned_data['email'], 
-                email=form.cleaned_data['email'], 
-                password=form.cleaned_data['password']
-            )
-            new_doctor.save()
-            auth_login(request, new_doctor.user)
-            return redirect('/')
+        if form.is_valid():
+            if (form.cleaned_data['password'] != form.cleaned_data['confirm_password']):
+                form.add_error('confirm_password', 'Введенные пароли не совпадают')
+            elif patient_form.is_valid() and (patient_form.cleaned_data['address'] != ''):
+                new_patient = Patient(
+                    name=form.cleaned_data['name'],
+                    second_name=form.cleaned_data['second_name'],
+                    third_name=form.cleaned_data['third_name'],
+                    birth_date=form.cleaned_data['birth_date'],
+                    address=patient_form.cleaned_data['address'],
+                    phone=form.cleaned_data['phone']
+                )
+                new_patient.user = User.objects.create(
+                    username=form.cleaned_data['email'], 
+                    email=form.cleaned_data['email'], 
+                    password=form.cleaned_data['password']
+                )
+                new_patient.save()
+                auth_login(request, new_patient.user)
+                return redirect('/')
+            elif doctor_form.is_valid() and (doctor_form.cleaned_data['specialty'] != '') and (doctor_form.cleaned_data['qualification'] != ''):
+                new_doctor = Doctor(
+                    name=form.cleaned_data['name'],
+                    second_name=form.cleaned_data['second_name'],
+                    third_name=form.cleaned_data['third_name'],
+                    birth_date=form.cleaned_data['birth_date'],
+                    phone=form.cleaned_data['phone'],
+                    specialty=doctor_form.cleaned_data['specialty'],
+                    qualification=doctor_form.cleaned_data['qualification']
+                )
+                new_doctor.user = User.objects.create(
+                    username=form.cleaned_data['email'], 
+                    email=form.cleaned_data['email'], 
+                    password=form.cleaned_data['password']
+                )
+                new_doctor.save()
+                auth_login(request, new_doctor.user)
+                return redirect('/')
     else:
         form = BaseForm()
         patient_form = PatientForm()
@@ -108,6 +109,10 @@ def contact(request):
 @login_required
 def my_profile(request):
     profile_type = utils.user_profile.get_profile_type(request.user)
+
+    if profile_type is None:
+        return redirect('/')
+
     return render(request, 'main_site/my_profile.html', {'profile_type': profile_type, 'patient': getattr(request.user, 'patient_profile', None), 'doctor': getattr(request.user, 'doctor_profile', None)})
 
 

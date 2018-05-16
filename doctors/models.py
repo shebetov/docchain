@@ -84,8 +84,11 @@ class Doctor(models.Model):
     def __str__ (self):
         return '%s %s %s'%(self.name, self.second_name, self.third_name)
 
-    def save(self, *args, **kwargs):
-        self.review_rate = Decimal(self.reviews.all().aggregate(review_rate=Sum('rate'))['review_rate'] / self.reviews.count())
+    def save(self, *args, **kwargs): 
+        if self.reviews.count() > 1:
+            self.review_rate = Decimal(self.reviews.all().aggregate(review_rate=Sum('rate'))['review_rate'] / self.reviews.count())
+        else:
+            self.review_rate = Decimal('0.00')
 
         super(Doctor, self).save(*args, **kwargs)
 

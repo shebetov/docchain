@@ -48,9 +48,9 @@
                                     <ul>
                                         {% if user.is_authenticated %}
                                         <li class="has-dropdown">
-                                            <a href="/profile">{{ user.email }}</a>
+                                            <a href="/my_profile">{{ user.email }}</a>
                                             <ul class="dropdown">
-                                                <li><a href="/profile">Профиль</a></li>
+                                                <li><a href="/my_profile">Профиль</a></li>
                                                 <!--li><a href="/profile/settings">Настройки</a></li-->
                                                 <li><a href="/profile/logout?next={{request.get_full_path}}">Выйти</a></li>
                                             </ul>

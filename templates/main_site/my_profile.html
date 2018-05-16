@@ -110,13 +110,31 @@
                                           <div class="clearfix"></div>
                                         <div class="bot-border"></div>
                                         
-                                        <div class="col-sm-5 col-xs-6 tital " >Адрес</div><div class="col-sm-7">{{ patient.address }}</div>
+                                        <div class="col-sm-5 col-xs-6 tital " >Специальность</div><div class="col-sm-7">{{ doctor.specialty }}</div>
                                         
                                           <div class="clearfix"></div>
                                         <div class="bot-border"></div>
+
+                                       	<div class="col-sm-5 col-xs-6 tital " >Квалификация</div><div class="col-sm-7">{{ doctor.qualification }}</div>
                                         
-                                        <div class="col-sm-5 col-xs-6 tital " >Телефон</div><div class="col-sm-7">{{ patient.phone }}</div>
+                                         <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+                                        
+                                        <div class="col-sm-5 col-xs-6 tital " >Телефон</div><div class="col-sm-7">{{ doctor.phone }}</div>
+
+                                        <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+                                        
+                                        <div class="col-sm-5 col-xs-6 tital " >Текущий кабинет</div><div class="col-sm-7">{{ doctor.current_room }}</div>
+
+                                        <div class="clearfix"></div>
+                                        <div class="bot-border"></div>
+                                        
+                                        <div class="col-sm-5 col-xs-6 tital " >Средняя оценка отзывов</div><div class="col-sm-7">{{ doctor.review_rate }}</div>
+
+                                        
                                     {% else %}
+                                    	Error
                                     {% endif %}
                                 </div>
                             </div>

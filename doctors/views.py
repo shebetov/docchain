@@ -19,29 +19,61 @@ def doctors(request):
 
 def api(request, func_name):
     result = ''
-    if func_name == 'livesearch':
-        if (request.GET) and (request.GET.get('q') is not None) and (len(request.GET.get('q')) > 0):
-            filter_query = search_engine.get_query(request.GET.get('q'), ['name', 'second_name', 'third_name', 'specialty__name'])
-            result = json.dumps([{"title": u.second_name + ' ' + u.name + ' ' + u.third_name, "id": u.id} for u in Doctor.objects.filter(filter_query)])
 
-    elif func_name == 'get_appointment_date_info':
-        if (request.GET) and (request.GET.get('doc_id') is not None) and (len(request.GET.get('doc_id')) > 0):
-            doc = Doctor.objects.get(id=int(request.GET.get('doc_id')))
-            date = datetime.strptime(request.GET.get('date'), '%d %b, %Y').date()
-            result = {time:True for time in APPOINTMENT_TIMES}
-            for appoint in doc.appointments.filter(create_date__year=date.year, create_date__month=date.month, create_date__day=date.day):
-                result[appoint.create_date.hour] = False
-            result = json.dumps(result)
+    for _ in (0, ):
 
-    elif func_name == 'create_appointment':
-        if request.POST:
-            choosed_datetime = datetime.strptime(request.POST['date'] + " " + request.POST['time'], '%d %b, %Y %H:%M')
-            Appointment.objects.create(
-                patient=request.user.patient_profile,
-                doctor=Doctor.objects.get(id=int(request.POST['doctor'])),
-                create_date=choosed_datetime
-            )
-            return redirect('/')
+        if func_name == 'livesearch':
+            if (request.GET) and (request.GET.get('q') is not None) and (len(request.GET.get('q')) > 0):
+                filter_query = search_engine.get_query(request.GET.get('q'), ['name', 'second_name', 'third_name', 'specialty__name'])
+                result = json.dumps([{"title": u.second_name + ' ' + u.name + ' ' + u.third_name, "id": u.id} for u in Doctor.objects.filter(filter_query)])
+            else:
+                result = {"error": "Missing or invalid parameter"}
+    
+
+        elif func_name == 'get_appointment_date_info':
+            if request.GET:
+                if (request.GET.get('doc_id') is None) or (len(request.GET.get('doc_id')) == 0) or (not request.GET.get('doc_id').isdigit()):
+                    result = {"error": "Missing or invalid doc_id parameter"}
+                    break
+    
+                elif request.GET.get('date') is None:
+                    result = {"error": "Missing or invalid date parameter"}
+                    break
+    
+                else:
+                    try:
+                        doc = Doctor.objects.get(id=int(request.GET.get('doc_id')))
+                    except ObjectDoesNotExist:
+                        result = {"error": "Doctor not found"}
+                        break
+            
+                    try:
+                        date = datetime.strptime(request.GET.get('date'), '%d %b, %Y').date()
+                    except ValueError:
+                        result = {"error": "Invalid date format. Example: 15 may, 2018"}
+                        break
+        
+                    result = {str(time):True for time in APPOINTMENT_TIMES}
+                    for appoint in doc.appointments.filter(create_date__year=date.year, create_date__month=date.month, create_date__day=date.day):
+                        result[srt(appoint.create_date.hour)] = False
+            else:
+                result = {"error": "get_appointment_date_info accepts only GET requests"}
+                break
+    
+
+        elif func_name == 'create_appointment':
+            if request.POST:
+                choosed_datetime = datetime.strptime(request.POST['date'] + " " + request.POST['time'], '%d %b, %Y %H:%M')
+                Appointment.objects.create(
+                    patient=request.user.patient_profile,
+                    doctor=Doctor.objects.get(id=int(request.POST['doctor'])),
+                    create_date=choosed_datetime
+                )
+                return redirect('/')
+
+    if type(result) is dict or type(result) is list:
+        result = json.dumps(result)
+
     return HttpResponse(result)
 
 @login_required

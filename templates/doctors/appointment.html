@@ -19,7 +19,7 @@
                         <form action="/doctors/api/create_appointment" method="post" class="appointment-wrap animate-box">{% csrf_token %}
                             <div class="row">
                                 <div class="col col-md-12" style="margin-bottom: 50px;">
-                                    <input id="pac-input" class="controls dropdown-toggle pac-input" data-toggle="dropdown" type="text" placeholder="Выберите специалиста..." onkeyup="showResult(this.value)">
+                                    <input id="pac-input" class="controls dropdown-toggle pac-input" data-toggle="dropdown" type="text" placeholder="Выберите специалиста..." onkeyup="showResult(this.value)" autocomplete="off">
                                     <div id="livesearch" class="my-dropdown-menu"></div>
                                 </div>
                             </div>
