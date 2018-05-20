@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             <input id="choosed-doctor" class="hidden" name="doctor">
-                            <div id="caleandar" style="display: none;"></div>
+                            <div id="caleandar" style="display: none;" onchange="on_calendar_change();"></div>
                             <input id="choosed-date" class="hidden" name="date">
                             <div id='time-picker' class="btn-group" style="display: none;"></div>
                             <input id="choosed-time" class="hidden" name="time">
@@ -46,11 +46,9 @@ var events = [
 ];
 var settings = {};
 var element = document.getElementById('caleandar');
+
+$('#caleandar').bind("DOMSubtreeModified", on_calendar_change);
 caleandar(element, events, settings);
-$('.cld-day.today').removeClass('today');
-$('.cld-number').click(function() {
-    on_date_choosed(this);
-})
 </script>
 <script src="{% static 'js/livesearch_choose.js' %}"></script>
 {% endblock %}

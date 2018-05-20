@@ -134,3 +134,17 @@ def api(request, func_name):
             return redirect('/my_profile/')
 
     return redirect('/')
+
+
+def error(request, error_name=None):
+    error_info = {
+        'error_code': '520',
+        'error_description': 'Неизвестная ошибка. Проверьте правилен ли url.'
+    }
+
+    if error_name == 'profile_required':
+        error_info['error_code'] = '403'
+        error_info['error_description'] = 'У вас должен быть заполнен профиль пациента, чтобы получить доступ к заказу талонов.'
+
+
+    return render(request, 'main_site/error.html', error_info)

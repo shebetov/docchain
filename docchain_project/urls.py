@@ -36,5 +36,7 @@ urlpatterns = [
     path('about_docchain/', main_site_views.about_docchain),
     path('contact/', main_site_views.contact),
     path('api/<func_name>', main_site_views.api),
+    path('error/<error_name>', main_site_views.error),
+    path('error/', main_site_views.error),
     path('', main_site_views.home)
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<style type="text/css">
+	.error_code {
+		color: #9370DB;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 70px;
+		font-weight: bold;
+		letter-spacing: 7px;
+	}
+</style>
+
+<div id="colorlib-contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 animate-box text-center">
+                        <h1 class="error_code">Ошибка {{ error_code }}</h1>
+                        {{ error_description }}
+                        <br>
+                        <a href="/" class="btn btn-primary btn-md" style="margin-top: 50px;">На главную</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

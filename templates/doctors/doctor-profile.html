@@ -2,6 +2,23 @@
 
 {% block content %}
 {% load static %}
+<script type="text/javascript">
+
+	function get_el_ticket(btn) {
+		btn.prop('disabled', true);
+		let doc_id = btn.attr('data-doc_id');
+		my_ajax_request('GET', "/doctors/api/get_el_queue_ticket?doc_id="+doc_id, 
+			function (data) {
+				alert('Вы успешно зарегестрированы! Ваш номер талона: ' + data['ticket_id']);
+  		    	location.reload();
+			}, 
+			function (data) {
+				console.log(data['error']);
+			}
+		);
+	}
+</script>
+<link rel="stylesheet" href="{% static 'css/profile-info.css' %}">
 <div id="colorlib-doctor">
     <div class="container">
         <div class="row">
@@ -15,7 +32,7 @@
         </div>
         <p>
         <div class="row">
-            <div class="col-md-8 image-content">
+            <div class="col-md-8 col-sm-12 image-content">
                 <div class="doctor animate-box">
                     <div class="contact-info">
                         <!--h2>Контакты</h2-->
@@ -23,6 +40,40 @@
                         <p><i class="icon-phone-outline"></i>{{ doctor.phone }}</p>
                         <p><i class="icon-mail"></i>{% if doctor.user == None %}Нет email-а{% else %}{{ doctor.user.email }}{% endif %}</p>
                     </div>
+
+                    <div class="comment-area">
+                    	<h2>Электронная очередь</h2>
+                    	<div class="col-sm-5 col-xs-6 tital " >Статус</div><div class="col-sm-7 col-xs-6 ">активна</div>
+                             <div class="clearfix"></div>
+                        <div class="bot-border"></div>
+
+                        <div class="col-sm-5 col-xs-6 tital " >Людей в очереди</div><div class="col-sm-7 col-xs-6 ">{{ doctor.el_queue.count }} чел.</div>
+                            <div class="clearfix"></div>
+                        <div class="bot-border"></div>
+
+                        {% if doctor.el_queue.count > 0 %}
+                        	<div class="col-sm-5 col-xs-6 tital " >Очередь</div><div class="col-sm-7 col-xs-6" >{% for ticket in doctor.el_queue.all reversed %}{{ ticket.id }} -> {% endfor %}🚪</div>
+                        		<div class="clearfix"></div>
+                        	<div class="bot-border"></div>
+                        {% endif %}
+
+                        {% if user__el_queue_ticket %}
+                        	<div class="col-sm-5 col-xs-6 tital " >Ваш талон</div><div class="col-sm-7 col-xs-6" >{{ user__el_queue_ticket.id }}</div>
+                        		<div class="clearfix"></div>
+                        	<div class="bot-border"></div>
+
+                        	<div class="col-sm-5 col-xs-6 tital " ></div><div class="col-sm-7 col-xs-6 offset-sm-5 offset-xs-6" >
+                        		<a class="btn btn-primary" onclick="del_el_ticket($(this));" data-doc_id="{{ doctor.id }}">Удалить талон</a>
+                        	</div>
+                        {% else %}
+                        	<div class="col-sm-5 col-xs-6 tital " ></div><div class="col-sm-7 col-xs-6 offset-sm-5 offset-xs-6" >
+                        		<a class="btn btn-primary" onclick="get_el_ticket($(this));" data-doc_id="{{ doctor.id }}">Получить талон</a>
+                        	</div>
+                        {% endif %}
+                        
+                       	
+                    </div>
+
                     <div class="comment-area">
                         {% if reviews.count == 0 %}
                             <h2>Отзывов нет</h2>

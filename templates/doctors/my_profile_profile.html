@@ -1,60 +1,12 @@
-{% extends 'base.html' %}
+{% extends 'my_profile_base.html' %}
 
-{% block content %}
+{% block profile_panel %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/profile-info.css' %}">
-<div class="container">
-            <div class="row">
-                <div class="col-md-7 my-center" style="float: none;margin: 0 auto;">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="box box-info">
                                 <div class="box-body">
-                                    <div id='my-tables1'></div>
-                                    {% if profile_type == 'patient' %}
-                                        <div class="col-sm-6">
-                                            <div align="center">
-                                                <img alt="User Pic" src="{% get_media_prefix %}{% if patient.profile_image == None %}patients/default_avatar.jpg{% else %}{{ patient.profile_image }}{% endif %}" id="profile-image1" class="img-circle img-responsive">
-                                                <form enctype="multipart/form-data" method="post" action="/api/update_profile_image">{% csrf_token %}
-                                                    <input id="profile-image-upload" class="hidden" type="file" name="image" accept="image/*" onchange="$(this).closest('form').submit();">
-                                                    <script>$(function() {$('#profile-image1').on('click', function() {$('#profile-image-upload').click();});});</script>
-                                                </form>
-                                                
-                                                <div style="color:#999;" >нажмите, чтобы поменять изображение</div>
-                                            </div>
-                                            <br>
-                                        </div>
-                                    
-                                        <div class="col-sm-6">
-                                            <h4 style="color:#00b1b1;">{{ patient.second_name }} {{ patient.name }} {{ patient.third_name }}</h4>
-                                            <span><p>Пациент</p></span>            
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <hr style="margin:5px 0 5px 0;">
-                                        <div class="col-sm-5 col-xs-6 tital " >Имя</div><div class="col-sm-7 col-xs-6 ">{{ patient.name }}</div>
-                                             <div class="clearfix"></div>
-                                        <div class="bot-border"></div>
-                                        
-                                        <div class="col-sm-5 col-xs-6 tital " >Фамилия</div><div class="col-sm-7">{{ patient.second_name }}</div>
-                                          <div class="clearfix"></div>
-                                        <div class="bot-border"></div>
-                                        
-                                        <div class="col-sm-5 col-xs-6 tital " >Отчество</div><div class="col-sm-7">{{ patient.third_name }}</div>
-                                          <div class="clearfix"></div>
-                                        <div class="bot-border"></div>
-                                        
-                                        <div class="col-sm-5 col-xs-6 tital " >Дата рождения</div><div class="col-sm-7">{{ patient.birth_date }}</div>
-                                        
-                                          <div class="clearfix"></div>
-                                        <div class="bot-border"></div>
-                                        
-                                        <div class="col-sm-5 col-xs-6 tital " >Адрес</div><div class="col-sm-7">{{ patient.address }}</div>
-                                        
-                                          <div class="clearfix"></div>
-                                        <div class="bot-border"></div>
-                                        
-                                        <div class="col-sm-5 col-xs-6 tital " >Телефон</div><div class="col-sm-7">{{ patient.phone }}</div>
-                                    {% elif profile_type == 'doctor' %}
                                         <div class="col-sm-6">
                                             <div align="center">
                                                 <img alt="User Pic" src="{% get_media_prefix %}{% if doctor.profile_image == None %}doctors/default_avatar.jpg{% else %}{{ doctor.profile_image }}{% endif %}" id="profile-image1" class="img-circle img-responsive">
@@ -112,22 +64,8 @@
                                         <div class="bot-border"></div>
                                         
                                         <div class="col-sm-5 col-xs-6 tital " >Средняя оценка отзывов</div><div class="col-sm-7">{{ doctor.review_rate }}</div>
-
-                                        
-                                    {% else %}
-                                    	Error
-                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <link rel="stylesheet" href="{% static 'css/my-tables.css' %}">
-        <script src="{% static 'js/my-tables.js' %}"></script>
-        <script type="text/javascript">
-            $('#my-tables1')._my_tables_create({});
-        </script>
-    {% endblock %}
+{% endblock %}
